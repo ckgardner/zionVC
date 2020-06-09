@@ -32,6 +32,26 @@ body {
     position: relative;
     left: 110px;
 } */
+.bodyWrap{
+    margin: 16px;
+}
+#ipAddress{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+    width: 300px;
+}
+.submit{
+    width: 200px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    background-color: #507282;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-top: 10px;
+    color: white;
+}
 
 @media only screen and (max-width: 600px){
     .visitorIN-box {

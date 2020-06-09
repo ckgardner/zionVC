@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="Zion VC Icons/bison.svg">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="app">
@@ -28,6 +29,7 @@
                 <v-btn text @click="page = 'dashboard' ">Dashboard</v-btn>
                 <v-btn text @click="page = 'help' ">Help</v-btn>
                 <v-btn text @click="page = 'settings' ">Settings</v-btn>
+                <v-btn text @click="page = 'dayTotal'">Day Total</v-btn>
             </v-app-bar>
         </div>
         <!-- Start side drawer -->
@@ -39,6 +41,7 @@
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dashboard'; sideDrawer();">Dashboard</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'help'; sideDrawer();">Help</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'settings'; sideDrawer();">Settings</v-btn>
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dayTotal'; sideDrawer();">Day Total</v-btn>
             <!-- <div id="ParkTitles" class="ml-4 mt-5">Dashboard</div>
             <div id="ParkTitles" class="ml-4 mt-5">Help</div>
             <div id="ParkTitles" class="ml-4 mt-5">Settings</div> -->
@@ -89,9 +92,15 @@
             <p>help coming soon</p>
         </div>
         <div v-if="page=='settings' ">
-            <p>settings coming soon</p>
+            <div class="bodyWrap">
+                <h3>Enter an IP Address</h3>
+                <input id="ipAddress" v-model="currentIP" type="text">
+                <button class="submit" @click="submitIp(currentIP)">Submit IP Address</button>
+            </div>
         </div>
-
+        <div v-if="page=='dayTotal'">
+            <p>day total coming soon</p>
+        </div>
     </v-content>
     </v-app>
     </div>
