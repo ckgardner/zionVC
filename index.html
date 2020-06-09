@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Zion Visitor Center</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="Zion VC Icons/bison.svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+    <v-app>
+    <v-content>
+        <div class="d-xs-flex d-lg-none mb-6">
+            <v-app-bar elevation=0 color="white" dense>
+                <v-toolbar-title> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison">Zion Visitor Center</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn @click="sideDrawer();" text><img src="Zion VC Icons/menu_green.svg" alt=""></v-btn>
+            </v-app-bar>
+
+        </div>
+        <div class="d-none d-lg-flex mb-6">
+            <v-app-bar elevation=0 color="white" dense>
+                <v-toolbar-title> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison"> Parkdata - Zion Visitor Center</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn text @click="page = 'dashboard' ">Dashboard</v-btn>
+                <v-btn text @click="page = 'help' ">Help</v-btn>
+                <v-btn text @click="page = 'settings' ">Settings</v-btn>
+            </v-app-bar>
+        </div>
+        <!-- Start side drawer -->
+        <v-navigation-drawer class="fill-height" hide-overlay v-model="drawer" right app>
+            <v-toolbar color="#EFF3F9" height="50" class="mb-4" dense flat style="font-size: 20px;">Menu</v-toolbar>
+            <!-- <v-list-item-title id="sideDrawerTitle" class="title ml-4">Menu</v-list-item-title> -->
+            <!-- <div id="sideDrawerTitle" class="ml-4">Menu</div> -->
+            <!-- <v-divider></v-divider> -->
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dashboard'; sideDrawer();">Dashboard</v-btn>
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'help'; sideDrawer();">Help</v-btn>
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'settings'; sideDrawer();">Settings</v-btn>
+            <!-- <div id="ParkTitles" class="ml-4 mt-5">Dashboard</div>
+            <div id="ParkTitles" class="ml-4 mt-5">Help</div>
+            <div id="ParkTitles" class="ml-4 mt-5">Settings</div> -->
+
+        </v-navigation-drawer>
+        <!-- End side drawer -->
+
+        <div v-if="page=='dashboard' ">
+            <div class="container"> <!-- class="d-xs-flex d-sm-none">-->
+
+                <div>
+                    <div class="visitorIN-box">
+                        <img class="visitorSVG" src="Zion VC Icons/visitors in.svg" alt="">
+                        <p class="visitorText">Visitors In</p>
+                        <div class="visitorDataContainer" style="position: relative; bottom: -50px;">
+                            <p class="visitorStatsText">{{visitorInPeople}}</p>
+                            <p class="visitorStatsText">People</p>
+                        </div>
+                    </div>
+                    <div class="visitorOUT-box">
+                        <img class="visitorSVG" src="Zion VC Icons/visitors out.svg" alt="">
+                        <p class="visitorText">Visitors Out</p>
+                        <div class="visitorDataContainer" style="position: relative; bottom: -50px;">
+                            <p class="visitorStatsText">{{visitorOutPeople}}</p>
+                            <p class="visitorStatsText">People</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="dailyTotal-box">
+                        <p class="dailyTotalText d-inline">Daily Total</p>
+                        <img class="dailyTotal-img mt-4" src="Zion VC Icons/daily total.svg" alt="">
+                        <p class="SubText">{{dailyTotalPeople}} People</p>
+                    </div>
+                    <div class="occupancy-box">
+                        <p class="dailyTotalText d-inline">Occupancy</p>
+                        <img class="dailyTotal-img mt-4" src="Zion VC Icons/occupancy.svg" alt="">
+                        <p class="SubText">{{occupancyPeople}} People</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="d-none d-sm-flex">
+                <p>md-flex</p>
+            </div> -->
+        </div>
+        <div v-if="page=='help' ">
+            <p>help coming soon</p>
+        </div>
+        <div v-if="page=='settings' ">
+            <p>settings coming soon</p>
+        </div>
+
+    </v-content>
+    </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="zion.js"></script>
+</body>
+</html>

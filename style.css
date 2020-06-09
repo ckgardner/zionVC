@@ -1,0 +1,204 @@
+body {
+    margin: 0;
+}
+
+.visitorStatsText {
+    font-size: 48px;
+    line-height: 49px;
+    color: #fff;
+}
+
+.dailyTotalText {
+    font-size: 20px;
+    line-height: 23px;
+    color: #fff;
+    margin-top: 34px;
+}
+.sideDrawerText {
+    font-size: 36px;
+    line-height: 19px;
+    color: #4F4F4F;
+}
+/* .SubText {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    color: #fff;
+    margin-left: 24px;
+    position: relative;
+    top: 50px;
+}
+.dailyTotal-img {
+    position: relative;
+    left: 110px;
+} */
+
+@media only screen and (max-width: 600px){
+    .visitorIN-box {
+        width: 288px;
+        height: 332px;
+        background: #7E8959;
+        border-radius: 24px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    .visitorOUT-box {
+        margin-top: 10px;
+        width: 288px;
+        height: 332px;
+        background: #507282;
+        border-radius: 24px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    .dailyTotal-box {
+        width: 288px;
+        height: 148px;
+        left: 16px;
+        top: 800px;
+        background: #7E8959;
+        border-radius: 13px;
+        margin: 0 auto;
+        margin-top: 10px;
+    }
+    .occupancy-box {
+        width: 288px;
+        height: 148px;
+        left: 16px;
+        top: 964px;
+        background: #507282;
+        border-radius: 13px;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .visitorSVG {
+        /* display: inline-block; */
+        position: relative;
+        width: 83px;
+        height: 83px;
+        left: 34px;
+        top: 34px;
+    }
+    .visitorText {
+        position: relative;
+        left: 150px;
+        top: -60px;
+        color: #fff;
+        font-size: 24px;
+    }
+    .visitorDataContainer {
+        margin-left: 32px;
+    }
+
+    .dailyTotalText {
+        font-size: 20px;
+        line-height: 23px;
+        color: #fff;
+        margin-top: 34px;
+        margin-left: 24px;
+    }
+    .SubText {
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 23px;
+        color: #fff;
+        margin-left: 24px;
+        position: relative;
+        top: 50px;
+    }
+    .dailyTotal-img {
+        position: relative;
+        left: 110px;
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .container {
+        text-align: center;
+        width: 50%;
+        margin: 0 auto;
+    }
+    .visitorIN-box {
+        width: 288px;
+        height: 332px;
+        background: #7E8959;
+        border-radius: 24px;
+        display: inline-block;
+        margin: 0 auto;
+    }
+    .visitorOUT-box {
+        /* margin-top: 10px; */
+        width: 288px;
+        height: 332px;
+        background: #507282;
+        border-radius: 24px;
+        display: inline-block;
+        margin: 0 auto;
+    }
+    .visitorText {
+        position: relative;
+        left: 70px;
+        top: -60px;
+        color: #fff;
+        font-size: 24px;
+    }
+
+    .dailyTotal-box {
+        width: 288px;
+        height: 148px;
+        left: 16px;
+        top: 800px;
+        background: #7E8959;
+        border-radius: 13px;
+        display: inline-block;
+        margin-top: 20px;
+    }
+    .occupancy-box {
+        width: 288px;
+        height: 148px;
+        left: 16px;
+        top: 964px;
+        background: #507282;
+        border-radius: 13px;
+        margin: 0 auto;
+        display: inline-block;
+        margin-top: 20px;
+    }
+
+    .visitorSVG {
+        /* display: inline-block; */
+        position: relative;
+        width: 83px;
+        height: 83px;
+        left: -74px;
+        top: 34px;
+    }
+    .visitorDataContainer {
+        margin-left: -90px;
+    }
+
+    .dailyTotalText {
+        font-size: 20px;
+        line-height: 23px;
+        color: #fff;
+        margin-top: 34px;
+        margin-left: -100px;
+    }
+    .SubText {
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 23px;
+        color: #fff;
+        margin-left: -120px;
+        position: relative;
+        top: 60px;
+    }
+    .dailyTotal-img {
+        position: relative;
+        left: 110px;
+    }
+    
+
+}
