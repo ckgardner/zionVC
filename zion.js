@@ -15,10 +15,10 @@ var app = new Vue({
         currentIP: "190.168.1.90",
     },
     created: function(){
-        this.loadStats();
+        this.loadMainStats();
     },
     methods: {
-        loadStats: function() {
+        loadMainStats: function() {
             console.log("loading stats...");
             var vm = this;
             axios.get("http://192.168.0.90/local/people-counter/.api?export-json&date=20200609&res=24h ").then(response => {
