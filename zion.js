@@ -12,7 +12,7 @@ var app = new Vue({
         dailyTotalPeople: 642,
         occupancyPeople: 42,
 
-        currentIP: "190.168.1.90",
+        currentIP: "192.168.1.90",
     },
     created: function(){
         this.loadMainStats();
