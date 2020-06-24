@@ -8,12 +8,13 @@
     <link rel="icon" type="image/png" sizes="512x512" href="Zion VC Icons/bison.svg">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div id="app">
     <v-app>
-    <v-content>
+    <v-main>
         <div class="d-xs-flex d-lg-none mb-6">
             <v-app-bar elevation=0 color="white" dense>
                 <v-toolbar-title> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison">Zion Visitor Center</v-toolbar-title>
@@ -27,9 +28,11 @@
                 <v-toolbar-title> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison"> Parkdata - Zion Visitor Center</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn text @click="page = 'dashboard' ">Dashboard</v-btn>
+                <v-btn text @click="page = 'reports' ">Reports</v-btn>
+                <v-btn text @click="page = 'fileTransfer' ">File Transer</v-btn>
+                <v-btn text @click="page = 'ipAddress' ">IP Address</v-btn>
                 <v-btn text @click="page = 'help' ">Help</v-btn>
-                <v-btn text @click="page = 'settings' ">Settings</v-btn>
-                <v-btn text @click="page = 'dayTotal'">Day Total</v-btn>
+                
             </v-app-bar>
         </div>
         <!-- Start side drawer -->
@@ -39,9 +42,11 @@
             <!-- <div id="sideDrawerTitle" class="ml-4">Menu</div> -->
             <!-- <v-divider></v-divider> -->
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dashboard'; sideDrawer();">Dashboard</v-btn>
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'reports'; sideDrawer();">Reports</v-btn>
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'fileTransfer'; sideDrawer();">File Transfer</v-btn>
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'ipAddress'; sideDrawer();">IP Address</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'help'; sideDrawer();">Help</v-btn>
-            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'settings'; sideDrawer();">Settings</v-btn>
-            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dayTotal'; sideDrawer();">Day Total</v-btn>
+
             <!-- <div id="ParkTitles" class="ml-4 mt-5">Dashboard</div>
             <div id="ParkTitles" class="ml-4 mt-5">Help</div>
             <div id="ParkTitles" class="ml-4 mt-5">Settings</div> -->
@@ -84,24 +89,45 @@
                 </div>
 
             </div>
-            <!-- <div class="d-none d-sm-flex">
-                <p>md-flex</p>
-            </div> -->
         </div>
-        <div v-if="page=='help' ">
-            <p>help coming soon</p>
-        </div>
-        <div v-if="page=='settings' ">
+        <div v-if="page=='reports' ">
+            
+            <v-menu offset-y class="">
+                <template v-slot:activator="{ on }">
+                    <v-btn class="mt-2 ml-2" outlined color="black" @click="switchArrow()" v-on="on">{{reportTimeInterval}}<img class="pl-3" :src="stateArrowImage" alt="arrow"></v-btn>
+                </template>
+                <v-list>
+                <v-list-item
+                    v-for="(time, index) in reportTimeIntervalList" :key="index" v-on:click="reportTimeInterval=time; resetArrow();">
+                    <v-list-item-title>{{ time }}</v-list-item-title>
+                </v-list-item>
+                </v-list>
+            </v-menu>
+            <div class="d-inline">
+                <v-menu  :close-on-content-click="DatePickerPopUp"  offset-y>
+                    <template v-slot:activator="{ on }">
+                        <v-btn prepend-icon="event" class="mt-2" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
+                    </template>
+                    <v-date-picker v-model="reportDate" color="#507282" scrollable>
+                        <v-spacer></v-spacer>
+                        <v-btn text color="#507282" @click="openDatePicker();">Cancel</v-btn>
+                        <v-btn text color="#507282" @click="DateSelected();  openDatePicker();">OK</v-btn>
+                    </v-date-picker>
+                </v-menu>
+            </div>
+            
+
+        <div v-if="page=='fileTransfer' ">file transfer</div>
+        <div v-if="page=='ipAddress' ">
             <div class="bodyWrap">
                 <h3>Enter an IP Address</h3>
                 <input id="ipAddress" v-model="currentIP" type="text">
                 <button class="submit" @click="submitIp(currentIP)">Submit IP Address</button>
             </div>
         </div>
-        <div v-if="page=='dayTotal'">
-            <p>day total coming soon</p>
-        </div>
-    </v-content>
+        <div v-if="page=='help' "><p>help coming soon</p></div>
+        
+    </v-main>
     </v-app>
     </div>
 
