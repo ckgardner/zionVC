@@ -96,32 +96,21 @@ var app = new Vue({
             this.DatePickerPopUp = true;
         },
         getCurrentDate: function() {
-            // jul 16 2020
             var today = new Date();
             var day = today.getDate();
             var monthNumber = today.getMonth()
             var year = today.getFullYear();
             var month = this.getMonthToString(monthNumber);
-            
             this.fullDate = `${month} ${day} ${year}`;
-            // console.log('report date: ', this.reportDate);
-            console.log(`getCurrentDate(); called on created ${year} ${day} ${month}`);
-
         },
         DateSelected: function() {
             let year1 = this.reportDate.substr(0,4);
             let month1 = this.reportDate.substr(5,2);
-            console.log(`month "${month1}" `, month1.length)
             var monthString = this.getMonthToString(Number(month1 -1) );
-            console.log('month string val ', monthString)
             let day1 = this.reportDate.substr(8,2);
-            console.log('month: ', month1);
             this.fullDate =  `${monthString} ${day1} ${year1}`;
-            console.log(this.fullDate);
-            console.log('monthstring', monthString);
         },
         getMonthToString: function(monthNumber) {
-            console.log('in month function: ', monthNumber);
             var month = '';
             switch(monthNumber) {
                 case 0: month = 'Jan'; break;
@@ -137,7 +126,6 @@ var app = new Vue({
                 case 10: month = 'Nov'; break;
                 case 11: month = 'Dec'; break;
             }
-            console.log('month: ', month);
             return month;
         }
     },
