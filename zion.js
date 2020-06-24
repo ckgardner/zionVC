@@ -1,4 +1,4 @@
-/*jshint esversion: 6 */
+/*jshint esversion: 8 */
 //console.log('connected');
 
 var app = new Vue({
@@ -7,8 +7,8 @@ var app = new Vue({
     data: {
         page: 'dashboard', // dashboard, reports, fileTransfer, ipAddress, help
         drawer: false,
-        visitorInPeople: 69,
-        visitorOutPeople: 88,
+        visitorInPeople: "",
+        visitorOutPeople: "",
         dailyTotalPeople: 642,
         occupancyPeople: 42,
         reportTimeIntervalList: ['15 min', '1 hour', '24 hour total'],
@@ -18,7 +18,6 @@ var app = new Vue({
         DatePickerPopUp: false,
         reportDate: '',
         fullDate: '',
-        currentIP: "192.168.1.90",
         MinuteHeaders: [
             { text: 'Time', align: 'start', value: 'time' },
             { text: 'In', value: 'timeIn'},
@@ -64,13 +63,28 @@ var app = new Vue({
         this.getCurrentDate();
     },
     methods: {
-        loadMainStats: function() {
+        loadMainStats: async function() {
             console.log("loading stats...");
-            var vm = this;
-            axios.get("http://192.168.0.90/local/people-counter/.api?export-json&date=20200611&res=24h").then(response => {
-                vm.visitorInPeople = response.data;
-                console.log(vm.visitorInPeople, "People Read In");
+            var url = "http://192.168.0.90/local/people-counter/.api?export-json&date=20200623&res=24h";
+            await $.get( url, function( data ) {
+                var Data = data.data;
+                console.log(Data);
+                for (var i in Data){
+                    var peopleIn = Data[i][0];
+                    var peopleOut = Data[i][1];                    
+                    this.visitorInPeople = peopleIn;
+                    this.visitorOutPeople = peopleOut;
+                    console.log(this.visitorInPeople, this.visitorOutPeople);
+                }
+            },'jsonp')
+            .done(function() {
+                console.log( "success" );
+            })
+            .fail(function() {
+                console.log( "error" );
             });
+            
+            console.log("visitors", this.visitorInPeople, this.visitorOutPeople);
         },
         sideDrawer: function() {
             this.drawer = ! this.drawer;
@@ -98,7 +112,7 @@ var app = new Vue({
         getCurrentDate: function() {
             var today = new Date();
             var day = today.getDate();
-            var monthNumber = today.getMonth()
+            var monthNumber = today.getMonth();
             var year = today.getFullYear();
             var month = this.getMonthToString(monthNumber);
             this.fullDate = `${month} ${day} ${year}`;
@@ -131,7 +145,7 @@ var app = new Vue({
     },
     watch: {
         page: function() {
-            this.reportTimeInterval = '15 min'
+            this.reportTimeInterval = '15 min';
         }
     }
 
