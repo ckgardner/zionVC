@@ -140,6 +140,11 @@ var app = new Vue({
             console.log('month: ', month);
             return month;
         }
+    },
+    watch: {
+        page: function() {
+            this.reportTimeInterval = '15 min'
+        }
     }
 
 });
