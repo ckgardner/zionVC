@@ -146,7 +146,79 @@
             </div>
 
             <div class="d-none d-lg-flex"> <!-- for large screens, all 3 tables side by side -->
-                <p>lg-flex</p>
+                <div class="table mt-6">
+                    <div class="mb-8">
+                        <p class="d-inline ml-4 mr-16 lg-table-labels">15 min</p>
+                        <v-menu :close-on-content-click="DatePickerPopUp"  offset-y>
+                            <template v-slot:activator="{ on }">
+                                <v-btn prepend-icon="event" class="ml-16" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
+                            </template>
+                            <v-date-picker v-model="reportDate" color="#507282" scrollable>
+                                <v-spacer></v-spacer>
+                                <v-btn text color="#507282" @click="openDatePicker();">Cancel</v-btn>
+                                <v-btn text color="#507282" @click="DateSelected();  openDatePicker();">OK</v-btn>
+                            </v-date-picker>
+                        </v-menu>
+                    </div>
+                    <v-data-table
+                    class="d-inline"
+                        :headers="MinuteHeaders"
+                        :items="minuteTimes"
+                        dense
+                        hide-default-footer
+                        mobile-breakpoint='320'>
+                    </v-data-table>
+                </div>
+
+                <div class="table mt-6">
+                    <div class="mb-8">
+                        <p class="d-inline ml-4 mr-16 lg-table-labels">1 Hour</p>
+                        <!-- <v-btn outlined class="ml-16">{{fullDate}}</v-btn> -->
+                        <v-menu :close-on-content-click="DatePickerPopUp"  offset-y>
+                            <template v-slot:activator="{ on }">
+                                <v-btn prepend-icon="event" class="ml-16" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
+                            </template>
+                            <v-date-picker v-model="reportDate" color="#507282" scrollable>
+                                <v-spacer></v-spacer>
+                                <v-btn text color="#507282" @click="openDatePicker();">Cancel</v-btn>
+                                <v-btn text color="#507282" @click="DateSelected();  openDatePicker();">OK</v-btn>
+                            </v-date-picker>
+                        </v-menu>
+                    </div>
+                    <v-data-table
+                        :headers="HourHeaders"
+                        :items="HourTimes"
+                        dense
+                        hide-default-footer
+                        mobile-breakpoint='320'
+                    >
+                    </v-data-table>
+                </div>
+
+                <div class="table mt-6">
+                    <div class="mb-8">
+                        <p class="d-inline ml-4 mr-12 lg-table-labels">24 hour total</p>
+                        <v-menu :close-on-content-click="DatePickerPopUp"  offset-y>
+                            <template v-slot:activator="{ on }">
+                                <v-btn prepend-icon="event" class="ml-12" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
+                            </template>
+                            <v-date-picker v-model="reportDate" color="#507282" scrollable>
+                                <v-spacer></v-spacer>
+                                <v-btn text color="#507282" @click="openDatePicker();">Cancel</v-btn>
+                                <v-btn text color="#507282" @click="DateSelected();  openDatePicker();">OK</v-btn>
+                            </v-date-picker>
+                        </v-menu>
+                    </div>
+                    <v-data-table
+                        :headers="DayHeaders"
+                        :items="DayTimes"
+                        dense
+                        hide-default-footer
+                        mobile-breakpoint='320'
+                    >
+                    </v-data-table>
+                </div>
+                
             </div>
         </div>
 
