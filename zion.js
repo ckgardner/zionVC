@@ -5,7 +5,7 @@ var app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-        page: 'fileTransfer', // dashboard, 
+        page: 'reports', // dashboard, reports, fileTransfer, ipAddress, help
         drawer: false,
         visitorInPeople: 69,
         visitorOutPeople: 88,
@@ -18,8 +18,46 @@ var app = new Vue({
         DatePickerPopUp: false,
         reportDate: '',
         fullDate: '',
-
         currentIP: "192.168.1.90",
+        MinuteHeaders: [
+            { text: 'Time', align: 'start', value: 'time' },
+            { text: 'In', value: 'timeIn'},
+            { text: 'Out', value: 'timeOut'}
+        ],
+        HourHeaders: [
+            { text: 'Time', align: 'start', value: 'time' },
+            { text: 'In', value: 'timeIn'},
+            { text: 'Out', value: 'timeOut'}
+        ],
+        DayHeaders: [
+            { text: 'Day', align: 'start', value: 'day' },
+            { text: 'In', value: 'timeIn'},
+            { text: 'Out', value: 'timeOut'}
+        ],
+
+        minuteTimes: [
+            { time: '8:00 am', timeIn: 22, timeOut: 16 },
+            { time: '8:15 am', timeIn: 134, timeOut: 200 },
+            { time: '8:30 am', timeIn: 38, timeOut: 37 },
+            { time: '8:45 am', timeIn: 105, timeOut: 4 },
+            { time: '9:00 pm', timeIn: 56, timeOut: 58 },
+            { time: '9:15 pm', timeIn: 101, timeOut: 70 },
+            { time: '9:30 pm', timeIn: 0, timeOut: 205 },
+            { time: '9:45 pm', timeIn: 113, timeOut: 101 }
+        ],
+        HourTimes: [
+            { time: '8 am', timeIn: 19, timeOut: 16 },
+            { time: '9 am', timeIn: 134, timeOut: 200 },
+            { time: '10 am', timeIn: 38, timeOut: 37 },
+            { time: '11 am', timeIn: 105, timeOut: 4 },
+            { time: '12 pm', timeIn: 56, timeOut: 58 },
+            { time: '1 pm', timeIn: 101, timeOut: 70 },
+            { time: '2 pm', timeIn: 0, timeOut: 205 },
+            { time: '3 pm', timeIn: 113, timeOut: 101 }
+        ],
+        DayTimes: [
+            { day: '07/16', timeIn: 137, timeOut: 126 },
+        ]
     },
     created: function(){
         this.loadMainStats();

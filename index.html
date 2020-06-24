@@ -21,8 +21,8 @@
                 <v-spacer></v-spacer>
                 <v-btn @click="sideDrawer();" text><img src="Zion VC Icons/menu_green.svg" alt=""></v-btn>
             </v-app-bar>
-
         </div>
+
         <div class="d-none d-lg-flex mb-6">
             <v-app-bar elevation=0 color="white" dense>
                 <v-toolbar-title> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison"> Parkdata - Zion Visitor Center</v-toolbar-title>
@@ -32,31 +32,22 @@
                 <v-btn text @click="page = 'fileTransfer' ">File Transer</v-btn>
                 <v-btn text @click="page = 'ipAddress' ">IP Address</v-btn>
                 <v-btn text @click="page = 'help' ">Help</v-btn>
-                
             </v-app-bar>
         </div>
+
         <!-- Start side drawer -->
         <v-navigation-drawer class="fill-height" hide-overlay v-model="drawer" right app>
             <v-toolbar color="#EFF3F9" height="50" class="mb-4" dense flat style="font-size: 20px;">Menu</v-toolbar>
-            <!-- <v-list-item-title id="sideDrawerTitle" class="title ml-4">Menu</v-list-item-title> -->
-            <!-- <div id="sideDrawerTitle" class="ml-4">Menu</div> -->
-            <!-- <v-divider></v-divider> -->
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dashboard'; sideDrawer();">Dashboard</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'reports'; sideDrawer();">Reports</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'fileTransfer'; sideDrawer();">File Transfer</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'ipAddress'; sideDrawer();">IP Address</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'help'; sideDrawer();">Help</v-btn>
-
-            <!-- <div id="ParkTitles" class="ml-4 mt-5">Dashboard</div>
-            <div id="ParkTitles" class="ml-4 mt-5">Help</div>
-            <div id="ParkTitles" class="ml-4 mt-5">Settings</div> -->
-
         </v-navigation-drawer>
         <!-- End side drawer -->
 
         <div v-if="page=='dashboard' ">
-            <div class="container"> <!-- class="d-xs-flex d-sm-none">-->
-
+            <div class="container">
                 <div>
                     <div class="visitorIN-box">
                         <img class="visitorSVG" src="Zion VC Icons/visitors in.svg" alt="">
@@ -90,33 +81,73 @@
 
             </div>
         </div>
+
         <div v-if="page=='reports' ">
-            <v-menu offset-y>
-                <template v-slot:activator="{ on }">
-                    <v-btn class="ml-2" outlined color="black" @click="switchArrow()" v-on="on">{{reportTimeInterval}}<img class="pl-3" :src="stateArrowImage" alt="arrow"></v-btn>
-                </template>
-                <v-list>
-                <v-list-item
-                    v-for="(time, index) in reportTimeIntervalList" :key="index" v-on:click="reportTimeInterval=time; resetArrow();">
-                    <v-list-item-title>{{ time }}</v-list-item-title>
-                </v-list-item>
-                </v-list>
-            </v-menu>
-            <div class="d-inline">
-                <v-menu  :close-on-content-click="DatePickerPopUp"  offset-y>
+            <div class="d-xs-flex d-lg-none"> <!-- for small screens, use buttons to toggle different time frames -->
+                <v-menu offset-y>
                     <template v-slot:activator="{ on }">
-                        <v-btn prepend-icon="event" class="" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
+                        <v-btn class="ml-2" outlined color="black" @click="switchArrow()" v-on="on">{{reportTimeInterval}}<img class="pl-3" :src="stateArrowImage" alt="arrow"></v-btn>
                     </template>
-                    <v-date-picker v-model="reportDate" color="#507282" scrollable>
-                        <v-spacer></v-spacer>
-                        <v-btn text color="#507282" @click="openDatePicker();">Cancel</v-btn>
-                        <v-btn text color="#507282" @click="DateSelected();  openDatePicker();">OK</v-btn>
-                    </v-date-picker>
+                    <v-list>
+                    <v-list-item
+                        v-for="(time, index) in reportTimeIntervalList" :key="index" v-on:click="reportTimeInterval=time; resetArrow();">
+                        <v-list-item-title>{{ time }}</v-list-item-title>
+                    </v-list-item>
+                    </v-list>
                 </v-menu>
+                <div class="d-inline">
+                    <v-menu  :close-on-content-click="DatePickerPopUp"  offset-y>
+                        <template v-slot:activator="{ on }">
+                            <v-btn prepend-icon="event" class="" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
+                        </template>
+                        <v-date-picker v-model="reportDate" color="#507282" scrollable>
+                            <v-spacer></v-spacer>
+                            <v-btn text color="#507282" @click="openDatePicker();">Cancel</v-btn>
+                            <v-btn text color="#507282" @click="DateSelected();  openDatePicker();">OK</v-btn>
+                        </v-date-picker>
+                    </v-menu>
+                </div>
+                <div v-if="reportTimeInterval == '15 min' ">
+                    <div class="table mt-6">
+                        <v-data-table
+                            :headers="MinuteHeaders"
+                            :items="minuteTimes"
+                            dense
+                            hide-default-footer
+                            mobile-breakpoint='320'
+                        >
+                        </v-data-table>
+                    </div>
+                </div>
+                <div v-if="reportTimeInterval == '1 hour' ">
+                    <div class="table mt-6">
+                        <v-data-table
+                            :headers="HourHeaders"
+                            :items="HourTimes"
+                            dense
+                            hide-default-footer
+                            mobile-breakpoint='320'
+                        >
+                        </v-data-table>
+                    </div>
+                </div>
+                <div v-if="reportTimeInterval == '24 hour total' ">
+                    <div class="table mt-6">
+                        <v-data-table
+                            :headers="DayHeaders"
+                            :items="DayTimes"
+                            dense
+                            hide-default-footer
+                            mobile-breakpoint='320'
+                        >
+                        </v-data-table>
+                    </div>
+                </div>
             </div>
-            <div v-if="reportTimeInterval == '15 min' ">15 min</div>
-            <div v-if="reportTimeInterval == '1 hour' ">1 hr</div>
-            <div v-if="reportTimeInterval == '24 hour total' ">24 hr</div>
+
+            <div class="d-none d-lg-flex"> <!-- for large screens, all 3 tables side by side -->
+                <p>lg-flex</p>
+            </div>
         </div>
 
         <div v-if="page=='fileTransfer' " class="text-center" >
