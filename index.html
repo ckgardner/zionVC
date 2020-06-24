@@ -91,10 +91,9 @@
             </div>
         </div>
         <div v-if="page=='reports' ">
-            
-            <v-menu offset-y class="">
+            <v-menu offset-y>
                 <template v-slot:activator="{ on }">
-                    <v-btn class="mt-2 ml-2" outlined color="black" @click="switchArrow()" v-on="on">{{reportTimeInterval}}<img class="pl-3" :src="stateArrowImage" alt="arrow"></v-btn>
+                    <v-btn class="ml-2" outlined color="black" @click="switchArrow()" v-on="on">{{reportTimeInterval}}<img class="pl-3" :src="stateArrowImage" alt="arrow"></v-btn>
                 </template>
                 <v-list>
                 <v-list-item
@@ -106,7 +105,7 @@
             <div class="d-inline">
                 <v-menu  :close-on-content-click="DatePickerPopUp"  offset-y>
                     <template v-slot:activator="{ on }">
-                        <v-btn prepend-icon="event" class="mt-2" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
+                        <v-btn prepend-icon="event" class="" @click="closeDatePicker();" outlined v-on="on">{{fullDate}}</v-btn>
                     </template>
                     <v-date-picker v-model="reportDate" color="#507282" scrollable>
                         <v-spacer></v-spacer>
@@ -115,9 +114,18 @@
                     </v-date-picker>
                 </v-menu>
             </div>
-            
+            <div v-if="reportTimeInterval == '15 min' ">15 min</div>
+            <div v-if="reportTimeInterval == '1 hour' ">1 hr</div>
+            <div v-if="reportTimeInterval == '24 hour total' ">24 hr</div>
+        </div>
 
-        <div v-if="page=='fileTransfer' ">file transfer</div>
+        <div v-if="page=='fileTransfer' " class="text-center" >
+            <v-btn class="mt-6" rounded text outlined color="#7E8959">DOWNLOAD DATA FROM CAMERA</v-btn>
+            <P>Download Complete</P>
+            <v-btn rounded text outlined color="#7E8959">UPLOAD DATE TO SERVER</v-btn>
+            <P>Upload Complete</P>
+        </div>
+
         <div v-if="page=='ipAddress' ">
             <div class="bodyWrap">
                 <h3>Enter an IP Address</h3>
@@ -125,6 +133,7 @@
                 <button class="submit" @click="submitIp(currentIP)">Submit IP Address</button>
             </div>
         </div>
+
         <div v-if="page=='help' "><p>help coming soon</p></div>
         
     </v-main>

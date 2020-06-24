@@ -5,7 +5,7 @@ var app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-        page: 'dashboard', // dashboard, help, settings
+        page: 'fileTransfer', // dashboard, 
         drawer: false,
         visitorInPeople: 69,
         visitorOutPeople: 88,
@@ -67,14 +67,14 @@ var app = new Vue({
             
             this.fullDate = `${month} ${day} ${year}`;
             // console.log('report date: ', this.reportDate);
-            console.log(`full ${year} ${day} ${month}`);
+            console.log(`getCurrentDate(); called on created ${year} ${day} ${month}`);
 
         },
         DateSelected: function() {
             let year1 = this.reportDate.substr(0,4);
             let month1 = this.reportDate.substr(5,2);
             console.log(`month "${month1}" `, month1.length)
-            var monthString = this.getMonthToString(Number(month1));
+            var monthString = this.getMonthToString(Number(month1 -1) );
             console.log('month string val ', monthString)
             let day1 = this.reportDate.substr(8,2);
             console.log('month: ', month1);
@@ -86,9 +86,7 @@ var app = new Vue({
             console.log('in month function: ', monthNumber);
             var month = '';
             switch(monthNumber) {
-                case 0:
-                    month = 'Jan'; 
-                    break;
+                case 0: month = 'Jan'; break;
                 case 1: month = 'Feb'; break;
                 case 2: month = 'Mar'; break;
                 case 3: month = 'April'; break;
