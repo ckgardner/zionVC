@@ -17,7 +17,9 @@ var app = new Vue({
         stateArrowImage: 'icons/downArrow.png',
         DatePickerPopUp: false,
         reportDate: '',
-        fullDate: ''
+        fullDate: '',
+
+        currentIP: "192.168.1.90",
     },
     created: function(){
         this.loadMainStats();
@@ -27,7 +29,7 @@ var app = new Vue({
         loadMainStats: function() {
             console.log("loading stats...");
             var vm = this;
-            axios.get("http://192.168.0.90/local/people-counter/.api?export-json&date=20200609&res=24h ").then(response => {
+            axios.get("http://192.168.0.90/local/people-counter/.api?export-json&date=20200611&res=24h").then(response => {
                 vm.visitorInPeople = response.data;
                 console.log(vm.visitorInPeople, "People Read In");
             });
