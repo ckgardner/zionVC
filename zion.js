@@ -1,11 +1,11 @@
 /*jshint esversion: 6 */
-console.log('connected');
+//console.log('connected');
 
 var app = new Vue({
     el: '#app',
     vuetify: new Vuetify(),
     data: {
-        page: 'reports', // dashboard, reports, fileTransfer, ipAddress, help
+        page: 'dashboard', // dashboard, reports, fileTransfer, ipAddress, help
         drawer: false,
         visitorInPeople: 69,
         visitorOutPeople: 88,

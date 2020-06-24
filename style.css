@@ -1,6 +1,9 @@
 body {
     margin: 0;
 }
+.pointer {
+    cursor: pointer;
+}
 
 .visitorStatsText {
     font-size: 48px;

@@ -17,7 +17,7 @@
     <v-main>
         <div class="d-xs-flex d-lg-none mb-6">
             <v-app-bar elevation=0 color="white" dense>
-                <v-toolbar-title> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison">Zion Visitor Center</v-toolbar-title>
+                <v-toolbar-title @click="page='dashboard'" class="pointer"> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison">Zion Visitor Center</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn @click="sideDrawer();" text><img src="Zion VC Icons/menu_green.svg" alt=""></v-btn>
             </v-app-bar>
@@ -25,7 +25,7 @@
 
         <div class="d-none d-lg-flex mb-6">
             <v-app-bar elevation=0 color="white" dense>
-                <v-toolbar-title> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison"> Parkdata - Zion Visitor Center</v-toolbar-title>
+                <v-toolbar-title  @click="page='dashboard'" class="pointer"> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison"> Parkdata - Zion Visitor Center</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn text @click="page = 'dashboard' ">Dashboard</v-btn>
                 <v-btn text @click="page = 'reports' ">Reports</v-btn>
@@ -37,7 +37,7 @@
 
         <!-- Start side drawer -->
         <v-navigation-drawer class="fill-height" hide-overlay v-model="drawer" right app>
-            <v-toolbar color="#EFF3F9" height="50" class="mb-4" dense flat style="font-size: 20px;">Menu</v-toolbar>
+            <v-toolbar color="#EFF3F9"  @click="sideDrawer()" height="50" class="mb-4 pointer" dense flat style="font-size: 20px;">Menu</v-toolbar>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dashboard'; sideDrawer();">Dashboard</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'reports'; sideDrawer();">Reports</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'fileTransfer'; sideDrawer();">File Transfer</v-btn>
