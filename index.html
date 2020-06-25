@@ -25,10 +25,10 @@
 
         <div class="d-none d-lg-flex mb-6">
             <v-app-bar elevation=0 color="white" dense>
-                <v-toolbar-title  @click="page='dashboard'" class="pointer"> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison"> Parkdata - Zion Visitor Center</v-toolbar-title>
+                <v-toolbar-title  @click="page='dashboard';" class="pointer"> <img class="mr-3" src="Zion VC Icons/bison.svg" alt="bison"> Parkdata - Zion Visitor Center</v-toolbar-title>
                 <v-spacer></v-spacer>
                 <v-btn text @click="page = 'dashboard' ">Dashboard</v-btn>
-                <v-btn text @click="page = 'reports' ">Reports</v-btn>
+                <v-btn text @click="page = 'reports'; reportsLoad();">Reports</v-btn>
                 <v-btn text @click="page = 'fileTransfer' ">File Transer</v-btn>
                 <v-btn text @click="page = 'ipAddress' ">IP Address</v-btn>
                 <v-btn text @click="page = 'help' ">Help</v-btn>
@@ -39,7 +39,7 @@
         <v-navigation-drawer class="fill-height" hide-overlay v-model="drawer" right app>
             <v-toolbar color="#EFF3F9"  @click="sideDrawer()" height="50" class="mb-4 pointer" dense flat style="font-size: 20px;">Menu</v-toolbar>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'dashboard'; sideDrawer();">Dashboard</v-btn>
-            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'reports'; sideDrawer();">Reports</v-btn>
+            <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'reports'; reportsLoad(); sideDrawer();">Reports</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'fileTransfer'; sideDrawer();">File Transfer</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'ipAddress'; sideDrawer();">IP Address</v-btn>
             <v-btn class="d-block" style="font-size: 16px; color: #4F4F4F;" text @click="page = 'help'; sideDrawer();">Help</v-btn>
@@ -90,7 +90,7 @@
                     </template>
                     <v-list>
                     <v-list-item
-                        v-for="(time, index) in reportTimeIntervalList" :key="index" v-on:click="reportTimeInterval=time; resetArrow();">
+                        v-for="(time, index) in reportTimeIntervalList" :key="index" v-on:click="reportTimeInterval=time; resetArrow(); reportsLoad();">
                         <v-list-item-title>{{ time }}</v-list-item-title>
                     </v-list-item>
                     </v-list>
@@ -113,6 +113,7 @@
                             :headers="MinuteHeaders"
                             :items="minuteTimes"
                             dense
+                            items-per-page='200'
                             hide-default-footer
                             mobile-breakpoint='320'
                         >
@@ -124,6 +125,7 @@
                         <v-data-table
                             :headers="HourHeaders"
                             :items="HourTimes"
+                            items-per-page='24'
                             dense
                             hide-default-footer
                             mobile-breakpoint='320'
@@ -136,6 +138,7 @@
                         <v-data-table
                             :headers="DayHeaders"
                             :items="DayTimes"
+                            items-per-page='1'
                             dense
                             hide-default-footer
                             mobile-breakpoint='320'
@@ -162,11 +165,13 @@
                     </div>
                     <v-data-table
                     class="d-inline"
-                        :headers="MinuteHeaders"
-                        :items="minuteTimes"
-                        dense
-                        hide-default-footer
-                        mobile-breakpoint='320'>
+                    :headers="MinuteHeaders"
+                    :items="minuteTimes"
+                    dense
+                    items-per-page='200'
+                    hide-default-footer
+                    mobile-breakpoint='320'
+                    >
                     </v-data-table>
                 </div>
 
