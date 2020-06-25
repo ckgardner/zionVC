@@ -13,7 +13,7 @@ var app = new Vue({
         occupancyPeople: '',
         reportTimeIntervalList: ['15 min', '1 hour', '24 hour total'],
         reportTimeInterval: '15 min',
-        currentIP: "190.168.1.90",
+        currentIP: "IP Address",
         stateArrowImage: 'icons/downArrow.png',
         DatePickerPopUp: false,
         reportDate: '',
@@ -39,6 +39,7 @@ var app = new Vue({
         minuteTimes: [],
         HourTimes: [],
         DayTimes: [],
+        ip_selected: false,
     },
     created: function(){
         this.getCurrentDate();
@@ -237,6 +238,13 @@ var app = new Vue({
                 case 11: month = 'Dec'; break;
             }
             return month;
+        },
+        ipSelected: function(){
+            if (this.ip_selected == true){
+                this.ip_selected = false;
+            }else{
+                this.ip_selected = true;
+            }
         }
     },
     watch: {

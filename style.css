@@ -36,13 +36,26 @@ body {
     left: 110px;
 } */
 .bodyWrap{
-    margin: 16px;
+    width: 280px;
+    margin: 0 auto;
+    margin-top: 15%;
 }
 #ipAddress{
-    border: 1px solid gray;
-    border-radius: 5px;
-    padding: 5px;
-    width: 300px;
+    vertical-align: middle;
+    width: 280px;
+    border: none;
+    height: 48px;
+    border-radius: 4px;
+    outline: none;
+    font-size: 16px;
+    background-color: #F2F2F2;
+    padding: 16px;
+}
+.gSelect{
+    border-bottom: 2px solid #7E8959 !important;
+}
+#ex{
+    font-size: 11px;
 }
 .submit{
     width: 200px;

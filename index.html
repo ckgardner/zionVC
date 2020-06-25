@@ -236,9 +236,9 @@
 
         <div v-if="page=='ipAddress' ">
             <div class="bodyWrap">
-                <h3>Enter an IP Address</h3>
-                <input id="ipAddress" v-model="currentIP" type="text">
-                <button class="submit" @click="submitIp(currentIP)">Submit IP Address</button>
+                <input v-model="currentIP" @click="ipSelected(); currentIP=''" id="ipAddress" :class="{gSelect:ip_selected}">
+                <p id="ex">Example: 192.168.0.90</p>
+                <button class="submit" @click="submitIp(currentIP); ipSelected()">Submit IP Address</button>
             </div>
         </div>
 
